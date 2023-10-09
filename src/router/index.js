@@ -1,7 +1,7 @@
 import {createRouter, createWebHistory} from "vue-router";
 
 import Home from "../views/Home.vue";
-import Quiz from "../views/Quiz.vue";
+import Quiz from "../components/Quiz.vue";
 
 const routes = [
   {
