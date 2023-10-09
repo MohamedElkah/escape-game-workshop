@@ -1,9 +1,24 @@
 export const data = {
   rooms: [
     {
+      dialog: [
+        {
+          type: "dialogue",
+          speaker: "Alice",
+          message:
+            "Hi, I'm Alice. I'm a software engineer at a tech company in San Francisco.",
+        },
+        {
+          type: "dialogue",
+          speaker: "Bob",
+          message:
+            "Hi, I'm Bob. I'm a software engineer at a tech company in San Francisco.",
+        },
+      ],
       theme: "Harassment Identification",
       situations: [
         {
+          type: "question",
           scenario:
             "Alice overhears a colleague making an inappropriate comment about another team member's appearance. What should she do?",
           responses: [
@@ -26,6 +41,7 @@ export const data = {
           ],
         },
         {
+          type: "question",
           scenario:
             "John witnesses an intern being belittled by a senior staff member. What should he do?",
           responses: [
@@ -50,6 +66,7 @@ export const data = {
       ],
     },
     {
+      type: "question",
       theme: "Bystander Intervention",
       situations: [
         {
@@ -75,6 +92,7 @@ export const data = {
           ],
         },
         {
+          type: "question",
           scenario:
             "Emily witnesses a colleague being persistently interrupted and spoken over during meetings. What should she do?",
           responses: [
