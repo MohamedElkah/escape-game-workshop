@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div>
     <h1>Escape Room</h1>
     <main>
       <router-view></router-view>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex">
     <p>{{ situation.scenario }}</p>
     <button
       v-for="(response, index) in situation.responses"

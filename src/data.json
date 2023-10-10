@@ -1,0 +1,120 @@
+{
+  "rooms": [
+    {
+      "dialog": [
+        {
+          "type": "dialogue",
+          "speaker": "Alice",
+          "message": "Hi, I'm Alice. I'm a software engineer at a tech company in San Francisco."
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Bob",
+          "message": "Hi, I'm Bob. I'm a software engineer at a tech company in San Francisco."
+        }
+      ],
+      "theme": "Harassment Identification",
+      "situations": [
+        {
+          "background": "./assets/backgrounds/test.png",
+          "sprite": "./assets/sprites/alice.jpg",
+          "type": "question",
+          "scenario": "Alice overhears a colleague making an inappropriate comment about another team member's appearance. What should she do?",
+          "responses": [
+            {
+              "is_correct": true,
+              "text": "Report the incident to a manager or HR, or confront the colleague if she feels safe doing so."
+            },
+            {
+              "is_correct": false,
+              "text": "Ignore the situation, assuming it's just a one-time occurrence."
+            },
+            {
+              "is_correct": false,
+              "text": "Laugh along to avoid any awkwardness."
+            },
+            {
+              "is_correct": false,
+              "text": "Tell other colleagues about the comment to gauge their reactions."
+            }
+          ]
+        },
+        {
+          "background": "./assets/",
+          "sprite": "./assets/",
+          "type": "question",
+          "scenario": "John witnesses an intern being belittled by a senior staff member. What should he do?",
+          "responses": [
+            {
+              "is_correct": true,
+              "text": "Intervene if safe, and report the incident to HR or a manager immediately."
+            },
+            {
+              "is_correct": false,
+              "text": "Stay out of it since he is not directly involved."
+            },
+            {
+              "is_correct": false,
+              "text": "Confront the senior staff member aggressively."
+            },
+            {
+              "is_correct": false,
+              "text": "Gossip about the situation with other colleagues."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "background": "./assets/",
+      "sprite": "./assets/",
+      "type": "question",
+      "theme": "Bystander Intervention",
+      "situations": [
+        {
+          "scenario": "Bob sees a group of colleagues isolating and ignoring a new team member during lunch breaks. Why should he intervene?",
+          "responses": [
+            {
+              "is_correct": true,
+              "text": "Creating an inclusive environment is everyone’s responsibility and intervening can help prevent potential harassment or bullying."
+            },
+            {
+              "is_correct": false,
+              "text": "It’s none of his business."
+            },
+            {
+              "is_correct": false,
+              "text": "The new team member probably prefers to be alone."
+            },
+            {
+              "is_correct": false,
+              "text": "He should join in isolating the new member to fit in with the group."
+            }
+          ]
+        },
+        {
+          "type": "question",
+          "scenario": "Emily witnesses a colleague being persistently interrupted and spoken over during meetings. What should she do?",
+          "responses": [
+            {
+              "is_correct": true,
+              "text": "Support the colleague by acknowledging their points, and address the issue with the interrupters, either in the moment or privately afterwards."
+            },
+            {
+              "is_correct": false,
+              "text": "Stay silent and avoid getting involved."
+            },
+            {
+              "is_correct": false,
+              "text": "Start interrupting others as well to fit in."
+            },
+            {
+              "is_correct": false,
+              "text": "Tell the interrupted colleague they should just speak up more."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

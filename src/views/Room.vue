@@ -1,5 +1,19 @@
 <template>
-  <div class="room">
+  <div class="room" v-if="room">
+    <div class="background">
+      <!-- :style="{
+        backgroundImage:
+          'url(' + room.situations[0].background
+            ? room.situation[0].background
+            : '' + ')',
+      }" -->
+      <img
+        :src="room.situations?.[0] ? room.situations[0].sprite : ''"
+        alt="sprite"
+        class="sprite"
+      />
+    </div>
+
     <DialogBox :message="currentMessage" @next="handleNext" v-if="showDialog" />
     <QuestionBox
       :situation="currentSituation"
@@ -10,10 +24,10 @@
 </template>
 
 <script>
-import {ref} from "vue";
+import {ref, onMounted} from "vue";
 import DialogBox from "../components/DialogBox.vue";
 import QuestionBox from "../components/QuestionBox.vue";
-import {data} from "../data.js";
+import jsonData from "../data.json";
 
 export default {
   components: {
@@ -21,14 +35,26 @@ export default {
     QuestionBox,
   },
   setup() {
-    const roomIndex = ref(0); // Pour garder une trace de la room actuelle
-    const showQuestion = ref(false); // Pour gérer l'affichage des questions
-    const showDialog = ref(true); // Pour gérer l'affichage des dialogues
-    const currentMessage = ref("Bienvenue dans cette room !"); // Le message actuel à afficher
+    const room = ref({});
+    const roomIndex = ref(0);
+    const showQuestion = ref(false);
+    const showDialog = ref(true);
+    const currentMessage = ref("Chargement...");
+    const currentSituation = ref(null);
 
-    const currentSituation = ref(data.rooms[roomIndex.value].situations[0]); // La situation/question actuelle
+    onMounted(() => {
+      console.log("jsonData:", jsonData);
+      try {
+        room.value = jsonData.rooms[roomIndex.value];
+        currentSituation.value = room.value.situations[0];
+        console.log("room:", room.value);
+        currentMessage.value = "Bienvenue dans cette room !";
+      } catch (err) {
+        console.error("Erreur lors de la manipulation des données:", err);
+        currentMessage.value = "Erreur lors de la manipulation des données.";
+      }
+    });
 
-    // Passer au message suivant ou montrer la question
     const handleNext = () => {
       showDialog.value = false;
       showQuestion.value = true;
@@ -45,6 +71,7 @@ export default {
     };
 
     return {
+      room,
       currentMessage,
       currentSituation,
       showDialog,
@@ -55,3 +82,19 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.sprite {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+}
+</style>
