@@ -8,13 +8,13 @@
             : '' + ')',
       }" -->
       <img
-        :src="room.situations?.[0] ? room.situations[0].sprite : ''"
+        :src="room.situations?.[0] ? imgFolder + room.situations[0].sprite : ''"
         alt="sprite"
         class="sprite"
       />
     </div>
 
-    <DialogBox :message="currentMessage" @next="handleNext" v-if="showDialog" />
+    <DialogBox :message="currentMessage" @next="handleNext" v-if="showDialog" :dialogues="roomDialogues" />
     <QuestionBox
       :situation="currentSituation"
       @answer="handleAnswer"
@@ -24,10 +24,11 @@
 </template>
 
 <script>
-import {ref, onMounted} from "vue";
-import DialogBox from "../components/DialogBox.vue";
-import QuestionBox from "../components/QuestionBox.vue";
-import jsonData from "../data.json";
+import {ref, onMounted, computed} from "vue";
+import DialogBox from "@/components/DialogBox.vue";
+import QuestionBox from "@/components/QuestionBox.vue";
+import jsonData from "@/data/index.json";
+import dialogues from "@/data/dialogues.json";
 
 export default {
   components: {
@@ -41,11 +42,16 @@ export default {
     const showDialog = ref(true);
     const currentMessage = ref("Chargement...");
     const currentSituation = ref(null);
+	  const imgFolder = ref("")
+    const roomDialogues = computed(() => {
+      return dialogues["welcome"];
+    });
 
     onMounted(() => {
       console.log("jsonData:", jsonData);
       try {
         room.value = jsonData.rooms[roomIndex.value];
+		    imgFolder.value = jsonData.imagesFolder;
         currentSituation.value = room.value.situations[0];
         console.log("room:", room.value);
         currentMessage.value = "Bienvenue dans cette room !";
@@ -72,6 +78,8 @@ export default {
 
     return {
       room,
+      imgFolder,
+		  roomDialogues,
       currentMessage,
       currentSituation,
       showDialog,

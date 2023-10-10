@@ -18,19 +18,10 @@ export default {
   components: {
     ButtonComponent,
   },
-  setup() {
-    const dialogues = ref([
-      {
-        speaker: "{props.CharacterName}",
-        message:
-          "Bonjour, bienvenue dans notre jeu éducatif contre les fous dangereux !",
-      },
-      {
-        speaker: "{props.CharacterName}",
-        message:
-          "Ici, vous apprendrez à identifier et gérer le harcèlement au travail.",
-      },
-    ]);
+  props: {
+    dialogues: Array
+  },
+  setup(props, _) {
 
     const currentIndex = ref(0);
     const displayLength = ref(1);
@@ -42,23 +33,23 @@ export default {
       clearInterval(interval);
       // Si le message n'est pas encore entièrement affiché, on l'affiche en entier
       if (
-        displayLength.value < dialogues.value[currentIndex.value].message.length
+        displayLength.value < props.dialogues[currentIndex.value].message.length
       ) {
         interval = setInterval(() => {
           displayLength.value = Math.min(
             displayLength.value + maxDisplayLength,
-            dialogues.value[currentIndex.value].message.length
+			  props.dialogues[currentIndex.value].message.length
           );
 
           if (
             displayLength.value >=
-            dialogues.value[currentIndex.value].message.length
+			  props.dialogues[currentIndex.value].message.length
           ) {
             clearInterval(interval);
           }
         }, 50);
         // Sinon, si on est au dernier message, on ne fait rien
-      } else if (currentIndex.value < dialogues.value.length - 1) {
+      } else if (currentIndex.value < props.dialogues.length - 1) {
         currentIndex.value++;
         displayLength.value = 1;
         // Appel récursif pour passer au message suivant
@@ -74,7 +65,7 @@ export default {
       clearInterval(interval);
     });
 
-    const currentDialogue = computed(() => dialogues.value[currentIndex.value]);
+    const currentDialogue = computed(() => props.dialogues[currentIndex.value]);
 
     const displayedText = computed(() =>
       currentDialogue.value.message.substring(0, displayLength.value)
