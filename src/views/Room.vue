@@ -85,7 +85,6 @@ export default {
 			room,
 			imgFolder,
 			currentRoom,
-			bgImg,
 			currentMessage,
 			currentSituation,
 			showDialog,
