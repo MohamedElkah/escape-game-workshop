@@ -2,8 +2,15 @@
   <div
     class="min-h-screen flex flex-col items-center justify-center bg-gray-100"
   >
-    <h1 class="text-4xl font-bold mb-4">Home</h1>
-    <p class="text-xl mb-8">{{ msg }}</p>
+    <p class="text-4xl mb-8 bg-red-300">
+		  Bienvenue dans l'Escape Room !
+    </p>
+		<p>
+			L'expérience que vous vous apprêtez à expérimenter est à prendre au sérieux.
+			Ici, vous apprendrez à identifier et gérer le harcèlement au travail.
+			Nous vous présenterons plusieurs situations qu'on peut retrouver dans le monde professionnel
+			et vous devrez y répondre en choisissant la meilleure réponse selon vous.
+		</p>
     <ButtonComponent :action="goToRoom">
       Commencer
     </ButtonComponent>
