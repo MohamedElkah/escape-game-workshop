@@ -3,24 +3,18 @@ export const index = {
 		{
 			dialog: [
 				{
-					type: "dialogue",
 					speaker: "Alice",
-					message:
-						"Hi, I'm Alice. I'm a software engineer at a tech company in San Francisco.",
+					message: "Hi, I'm Alice. I'm a software engineer at a tech company in San Francisco.",
 				},
 				{
-					type: "dialogue",
 					speaker: "Bob",
-					message:
-						"Hi, I'm Bob. I'm a software engineer at a tech company in San Francisco.",
+					message: "Hi, I'm Bob. I'm a software engineer at a tech company in San Francisco.",
 				},
 			],
 			theme: "Harassment Identification",
 			situations: [
 				{
-					type: "question",
-					scenario:
-						"Alice overhears a colleague making an inappropriate comment about another team member's appearance. What should she do?",
+					scenario: "Alice overhears a colleague making an inappropriate comment about another team member's appearance. What should she do?",
 					responses: [
 						{
 							is_correct: true,
@@ -41,9 +35,7 @@ export const index = {
 					],
 				},
 				{
-					type: "question",
-					scenario:
-						"John witnesses an intern being belittled by a senior staff member. What should he do?",
+					scenario: "John witnesses an intern being belittled by a senior staff member. What should he do?",
 					responses: [
 						{
 							is_correct: true,
@@ -66,12 +58,10 @@ export const index = {
 			],
 		},
 		{
-			type: "question",
 			theme: "Bystander Intervention",
 			situations: [
 				{
-					scenario:
-						"Bob sees a group of colleagues isolating and ignoring a new team member during lunch breaks. Why should he intervene?",
+					scenario: "Bob sees a group of colleagues isolating and ignoring a new team member during lunch breaks. Why should he intervene?",
 					responses: [
 						{
 							is_correct: true,
@@ -92,9 +82,7 @@ export const index = {
 					],
 				},
 				{
-					type: "question",
-					scenario:
-						"Emily witnesses a colleague being persistently interrupted and spoken over during meetings. What should she do?",
+					scenario: "Emily witnesses a colleague being persistently interrupted and spoken over during meetings. What should she do?",
 					responses: [
 						{
 							is_correct: true,
