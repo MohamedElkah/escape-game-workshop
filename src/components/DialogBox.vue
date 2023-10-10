@@ -1,22 +1,23 @@
 <template>
   <div class="room flex justify-center items-center min-h-screen bg-blue-200">
-    <div v-if="currentDialogue" class="dialogue p-4 bg-white rounded-md">
-      <h2 class="text-xl font-bold mb-2">{{ currentDialogue.speaker }}</h2>
-      <p class="text-md">{{ displayedText }}</p>
-      <button
-        @click="advanceDialogue"
-        class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
+    <div v-if="currentDialogue" class="dialogue p-4 bg-white rounded-md flex flex-col w-[700px] mx-auto relative">
+      <h2 class="text-lg font-bold w-fit bg-black text-white rounded-full py-1 px-3 absolute left-0 -translate-y-1/2 top-0">{{ currentDialogue.speaker }}</h2>
+      <p class="text-md mt-2.5">{{ displayedText }}</p>
+      <ButtonComponent :action="advanceDialogue" classes="self-end mt-5">
         Suivant
-      </button>
+      </ButtonComponent>
     </div>
   </div>
 </template>
 
 <script>
 import {ref, computed, onMounted, onUnmounted} from "vue";
+import ButtonComponent from "./Button.vue";
 
 export default {
+  components: {
+    ButtonComponent,
+  },
   setup() {
     const dialogues = ref([
       {
