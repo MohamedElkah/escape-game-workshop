@@ -1,4 +1,5 @@
 {
+  "imagesFolder": "./src/assets/",
   "rooms": [
     {
       "dialog": [
@@ -16,8 +17,8 @@
       "theme": "Harassment Identification",
       "situations": [
         {
-          "background": "./assets/backgrounds/test.png",
-          "sprite": "./assets/sprites/alice.jpg",
+          "background": "/backgrounds/test.png",
+          "sprite": "/sprites/alice.jpg",
           "type": "question",
           "scenario": "Alice overhears a colleague making an inappropriate comment about another team member's appearance. What should she do?",
           "responses": [
