@@ -1,12 +1,8 @@
 <template>
   <div class="room" v-if="room">
-    <div class="background">
-      <!-- :style="{
-        backgroundImage:
-          'url(' + room.situations[0].background
-            ? room.situation[0].background
-            : '' + ')',
-      }" -->
+    <div class="background" :style="{
+		      backgroundImage: `url(${room.situations?.[0] ? imgFolder + room.situations[0].background : ''})`
+    }">
       <img
         :src="room.situations?.[0] ? imgFolder + room.situations[0].sprite : ''"
         alt="sprite"
@@ -46,6 +42,8 @@ export default {
     const roomDialogues = computed(() => {
       return dialogues["welcome"];
     });
+
+      // `url(${room.situations[0].background ? room.situations[0].background : ''})`
 
     onMounted(() => {
       console.log("jsonData:", jsonData);
