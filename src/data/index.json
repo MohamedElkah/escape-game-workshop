@@ -1,5 +1,5 @@
 {
-  "imagesFolder": "./src/assets",
+  "imagesFolder": "/src/assets",
   "rooms": [
     {
       "dialog": [
