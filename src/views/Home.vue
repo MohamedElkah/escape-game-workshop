@@ -13,7 +13,8 @@
 <script>
 import {ref} from "vue";
 import {useRouter} from "vue-router";
-import ButtonComponent from "../components/Button.vue";
+import ButtonComponent from "@/components/Button.vue";
+import useStore from "@/store/index.js";
 
 export default {
   name: "Home",
@@ -23,12 +24,15 @@ export default {
   setup() {
     const msg = ref("Bienvenue dans l'Escape Room !");
     const router = useRouter();
+	  const store = useStore();
+
+	  const {text} = store;
 
     const goToRoom = () => {
       router.push("/room");
     };
 
-    return {msg, goToRoom};
+    return {msg, goToRoom, text};
   },
 };
 </script>

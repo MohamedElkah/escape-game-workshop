@@ -11,9 +11,9 @@
 
 <script>
 import {ref} from "vue";
-import DialogBox from "../components/DialogBox.vue";
-import QuestionBox from "../components/QuestionBox.vue";
-import {data} from "../data.js";
+import DialogBox from "@/components/DialogBox.vue";
+import QuestionBox from "@/components/QuestionBox.vue";
+import {index} from "@/data/index.js";
 
 export default {
   components: {
@@ -26,7 +26,7 @@ export default {
     const showDialog = ref(true); // Pour gérer l'affichage des dialogues
     const currentMessage = ref("Bienvenue dans cette room !"); // Le message actuel à afficher
 
-    const currentSituation = ref(data.rooms[roomIndex.value].situations[0]); // La situation/question actuelle
+    const currentSituation = ref(index.rooms[roomIndex.value].situations[0]); // La situation/question actuelle
 
     // Passer au message suivant ou montrer la question
     const handleNext = () => {
