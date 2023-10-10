@@ -3,20 +3,21 @@
     <div v-if="currentDialogue" class="dialogue p-4 bg-white rounded-md">
       <h2 class="text-xl font-bold mb-2">{{ currentDialogue.speaker }}</h2>
       <p class="text-md">{{ displayedText }}</p>
-      <button
-        @click="advanceDialogue"
-        class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
+      <ButtonComponent :action="advanceDialogue">
         Suivant
-      </button>
+      </ButtonComponent>
     </div>
   </div>
 </template>
 
 <script>
 import {ref, computed, onMounted, onUnmounted} from "vue";
+import ButtonComponent from "./Button.vue";
 
 export default {
+  components: {
+    ButtonComponent,
+  },
   setup() {
     const dialogues = ref([
       {
