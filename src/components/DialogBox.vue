@@ -1,6 +1,6 @@
 <template>
   <div class="room flex justify-center items-center min-h-screen bg-blue-200">
-    <div v-if="currentDialogue" class="dialogue p-4 bg-white rounded-md flex flex-col w-[700px] mx-auto relative">
+    <div v-if="currentDialogue" class="dialogue p-4 bg-white rounded-md flex flex-col w-[900px] mx-auto relative">
       <h2 class="text-lg font-bold w-fit bg-black text-white rounded-full py-1 px-3 absolute left-0 -translate-y-1/2 top-0">{{ currentDialogue.speaker }}</h2>
       <p class="text-md mt-2.5">{{ displayedText }}</p>
       <ButtonComponent :action="advanceDialogue" classes="self-end mt-5">
