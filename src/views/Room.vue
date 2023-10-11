@@ -20,8 +20,10 @@
 		<QuestionBox
 			:theme="currentRoom.theme"
 			:situation="currentSituation"
+			:has-no-more-situation="hasNoMoreSituation"
 			@answer="handleAnswer"
-			v-else-if="!showDialog"
+			@next-room="nextRoom"
+			v-else
 		/>
 	</div>
 </template>
@@ -32,6 +34,7 @@ import DialogBox from "@/components/DialogBox.vue";
 import QuestionBox from "@/components/QuestionBox.vue";
 import useRoomStore from "@/store/roomStore.js";
 import jsonData from "@/data/index.json";
+import {useRoute, useRouter} from "vue-router";
 
 export default {
 	components: {
@@ -39,16 +42,26 @@ export default {
 		QuestionBox,
 	},
 	setup() {
-		const {currentRoomId, currentRoom, addAnswer} = useRoomStore()
+		const {currentRoomId, currentRoom, addAnswer, userAnswers, setCurrentRoomId} = useRoomStore()
+		const route = useRoute();
+		const router = useRouter();
+		const paramId = route.params.id;
 		const showDialog = ref(true);
 		const currentMessage = ref("Chargement...");
 		const imgFolder = ref("")
 		const currentSituationId = ref(0);
 		const currentSituation = computed(() => {
-			return currentRoom.situations[currentSituationId.value];
+			return currentRoom(paramId).situations[currentSituationId.value];
+		});
+		const roomAnswers = computed(() => {
+			return userAnswers.filter((answer) => Number(answer.roomId) === Number(currentRoomId));
+		})
+		const hasNoMoreSituation =  computed(() => {
+			return roomAnswers.value.length >= currentRoom(currentRoomId).situations.length;
 		});
 
 		onMounted(() => {
+			console.log(currentRoom(paramId).dialog, paramId)
 			try {
 				imgFolder.value = jsonData.imagesFolder;
 				currentMessage.value = "Bienvenue dans cette room !";
@@ -62,24 +75,33 @@ export default {
 			showDialog.value = false;
 		};
 		const handleAnswer = (index) => {
-			console.log(currentRoomId)
-			addAnswer({
-				roomId: currentRoomId,
-				situationId: currentSituation.value.id,
-				answerId: index,
-			})
+
 			// if (isCorrect) {
 			// 	currentMessage.value = "Correct ! Passons à la situation suivante.";
 			// } else {
 			// 	currentMessage.value = "Incorrect. Réessayez.";
 			// }
 			// showDialog.value = true;
-			if (currentSituationId.value < currentRoom.situations.length - 1) {
+			if (!hasNoMoreSituation.value) {
+				addAnswer({
+					roomId: currentRoomId,
+					situationId: currentSituation.value.id,
+					answerId: index,
+				})
+				console.log(currentRoomId, currentRoom(paramId).situations.length)
 				currentSituationId.value++;
 			} else {
 				console.log("test goToNextSituation() else")
 			}
 			// }
+		};
+
+		const nextRoom = () => {
+			setCurrentRoomId(Number(paramId) + 1)
+			console.log("test goToNextSituation() nextRoom")
+			currentSituationId.value = 0;
+			const nextId = Number(paramId) + 1
+			router.push("/room/" + nextId)
 		};
 
 		const noMoreDialogAction = () => {
@@ -88,10 +110,13 @@ export default {
 
 		return {
 			imgFolder,
-			currentRoom,
+			currentRoom: currentRoom(paramId),
+			roomAnswers,
 			currentMessage,
 			currentSituation,
+			hasNoMoreSituation,
 			showDialog,
+			nextRoom,
 			handleNext,
 			handleAnswer,
 			noMoreDialogAction,
