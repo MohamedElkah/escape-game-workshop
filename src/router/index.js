@@ -7,7 +7,7 @@ const routes = [
     component: () => import("../views/Home.vue"),
   },
   {
-    path: "/room",
+    path: "/room/:id",
     name: "Room",
     component: () => import("../views/Room.vue"),
   },
@@ -17,5 +17,10 @@ const router = createRouter({
   history: createWebHistory(),
   routes: routes,
 });
+//
+// router.beforeEach((to, from, next) => {
+//   if (to.name === "Room" && to.params.id === "3") next({name: "Home"});
+//   else next();
+// });
 
 export default router;

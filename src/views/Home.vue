@@ -29,7 +29,7 @@ export default {
     const router = useRouter();
 
     const goToRoom = () => {
-      router.push("/room");
+      router.push("/room/1");
     };
 
     return {msg, goToRoom};
