@@ -40,13 +40,16 @@
       </template>
     </Box>
   </div>
+
 </template>
 
 <script>
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import Box from "./Box.vue";
 import ButtonComponent from "./Button.vue";
 import useRoomStore from "@/store/roomStore.js";
+import Answers from "@/components/Answers.vue";
+import ResultDisplay from "@/components/ResultDisplay.vue";
 
 export default {
   components: {Box, ButtonComponent},
@@ -81,6 +84,7 @@ export default {
       buttonClass,
     };
   },
+
 };
 </script>
 

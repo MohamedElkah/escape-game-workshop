@@ -1,4 +1,5 @@
 <template>
+
   <div class="room" v-if="currentRoom">
     <div
       class="background"
@@ -32,6 +33,7 @@
     />
     <div v-else-if="loadingQuestions">Loading...</div>
   </div>
+
 </template>
 
 <script>
@@ -151,6 +153,7 @@ export default {
       noMoreDialogAction,
     };
   },
+
 };
 </script>
 
