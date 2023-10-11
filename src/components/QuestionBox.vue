@@ -52,18 +52,18 @@ export default {
 		situation: Object,
 		theme: String,
 		hasNoMoreSituation: Boolean,
-		onNextRoom: Function
+		onNextRoom: Function,
+		roomAnswers: Array
 	},
-	setup() {
-		const {currentRoomId, userAnswers} = useRoomStore()
+	setup(props) {
+		const {currentRoomId} = useRoomStore()
 		const isResultVisible = ref(false);
 		const percentage = computed(() => {
-			const result =  userAnswers
-				.filter((answer) => Number(answer.roomId) === Number(currentRoomId))
+			const result = props.roomAnswers
 				.reduce((acc, answer) => {
 					if (answer.isCorrect) acc++;
 					return acc;
-				}, 0) / userAnswers.length * 100;
+				}, 0) / props.roomAnswers.length * 100;
 			return result.toFixed(2);
 		})
 
