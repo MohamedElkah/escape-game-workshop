@@ -1,14 +1,18 @@
-import {defineStore} from "pinia";
+import { defineStore } from 'pinia'
 import data from "@/data/index.json";
 
-const useRoomStore = defineStore("room", {
+const useRoomStore = defineStore('room',{
   state: () => ({
     currentRoomId: 0,
+    userAnswers: [],
   }),
   getters: {
     currentRoom(state) {
       return data.rooms[state.currentRoomId];
     },
+    currentSituation(state) {
+      return this.currentRoom.situations[state.currentSituationId];
+    }
   },
   actions: {
     setCurrentRoomId(id) {
@@ -16,7 +20,10 @@ const useRoomStore = defineStore("room", {
         this.currentRoomId = id;
       }
     },
+    addAnswer(answer) {
+      this.userAnswers.push(answer);
+    }
   },
-});
+})
 
 export default useRoomStore;
