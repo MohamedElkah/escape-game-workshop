@@ -69,7 +69,6 @@ export default {
 		});
 
 		onMounted(() => {
-			console.log(currentRoom(paramId).dialog, paramId)
 			try {
 				imgFolder.value = jsonData.imagesFolder;
 				currentMessage.value = "Bienvenue dans cette room !";
