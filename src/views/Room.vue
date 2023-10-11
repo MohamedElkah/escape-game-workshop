@@ -21,10 +21,14 @@
 			:theme="currentRoom.theme"
 			:situation="currentSituation"
 			:has-no-more-situation="hasNoMoreSituation"
-			@answer="handleAnswer"
 			@next-room="nextRoom"
 			v-else
-		/>
+		>
+			<Answers
+				:situation="currentSituation"
+				@answer="handleAnswer"
+			/>
+		</QuestionBox>
 	</div>
 </template>
 
@@ -35,9 +39,11 @@ import QuestionBox from "@/components/QuestionBox.vue";
 import useRoomStore from "@/store/roomStore.js";
 import jsonData from "@/data/index.json";
 import {useRoute, useRouter} from "vue-router";
+import Answers from "@/components/Answers.vue";
 
 export default {
 	components: {
+		Answers,
 		DialogBox,
 		QuestionBox,
 	},
@@ -50,6 +56,7 @@ export default {
 		const currentMessage = ref("Chargement...");
 		const imgFolder = ref("")
 		const currentSituationId = ref(0);
+
 		const currentSituation = computed(() => {
 			return currentRoom(paramId).situations[currentSituationId.value];
 		});
@@ -74,26 +81,19 @@ export default {
 		const handleNext = () => {
 			showDialog.value = false;
 		};
-		const handleAnswer = (index) => {
 
-			// if (isCorrect) {
-			// 	currentMessage.value = "Correct ! Passons à la situation suivante.";
-			// } else {
-			// 	currentMessage.value = "Incorrect. Réessayez.";
-			// }
-			// showDialog.value = true;
+		const handleAnswer = (index) => {
+			console.log("index de la réponse cliquée", index, currentSituation.value.responses[index - 1])
 			if (!hasNoMoreSituation.value) {
 				addAnswer({
 					roomId: currentRoomId,
 					situationId: currentSituation.value.id,
-					answerId: index,
+					answerId: index - 1,
+					isCorrect: currentSituation.value.responses[index - 1].is_correct,
 				})
 				console.log(currentRoomId, currentRoom(paramId).situations.length)
 				currentSituationId.value++;
-			} else {
-				console.log("test goToNextSituation() else")
 			}
-			// }
 		};
 
 		const nextRoom = () => {
