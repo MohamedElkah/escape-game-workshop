@@ -1,8 +1,8 @@
 <template>
   <button
     @click="action"
-    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-    :class="classes"
+    class="font-bold py-2 px-4 rounded border-2"
+    :class="[classes, isSecondary ? 'bg-white text-blue-500 border-blue-500' : 'bg-blue-500 border-transparent hover:bg-blue-700 text-white']"
   >
     <slot></slot>
   </button>
@@ -14,6 +14,10 @@ export default {
   props: {
     action: Function,
     classes: String,
+    isSecondary: {
+        type: Boolean,
+        default: false,
+    },
   },
 };
 </script>
