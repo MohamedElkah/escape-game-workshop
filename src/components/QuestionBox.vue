@@ -2,7 +2,10 @@
 	<div class="room flex justify-center items-center min-h-screen bg-blue-200">
 		<Box>
 			<template v-if="hasNoMoreSituation">
-				<p>Félicitations. Vous avez terminé la Room n°{{currentRoomId}}.</p>
+				<p>
+					Félicitations. Vous avez terminé la Room n°{{currentRoomId}}.
+					Vous obtenez une clé pour accéder à la room suivante.
+				</p>
 				<div class="flex items-center gap-3">
 					<ButtonComponent
 						classes="flex-1 h-full"
@@ -52,25 +55,26 @@ export default {
 		situation: Object,
 		theme: String,
 		hasNoMoreSituation: Boolean,
-		onNextRoom: Function
+		onNextRoom: Function,
+		roomAnswers: Array
 	},
-	setup() {
-		const {currentRoomId, userAnswers} = useRoomStore()
+	setup(props) {
+		const {currentRoomId, keysCount} = useRoomStore()
 		const isResultVisible = ref(false);
 		const percentage = computed(() => {
-			const result =  userAnswers
-				.filter((answer) => Number(answer.roomId) === Number(currentRoomId))
+			const result = props.roomAnswers
 				.reduce((acc, answer) => {
 					if (answer.isCorrect) acc++;
 					return acc;
-				}, 0) / userAnswers.length * 100;
+				}, 0) / props.roomAnswers.length * 100;
 			return result.toFixed(2);
 		})
 
 		return {
 			isResultVisible,
 			percentage,
-			currentRoomId
+			currentRoomId,
+			keysCount
 		};
 	},
 };

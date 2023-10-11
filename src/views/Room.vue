@@ -22,6 +22,7 @@
 			:situation="currentSituation"
 			:has-no-more-situation="hasNoMoreSituation"
 			@next-room="nextRoom"
+			:room-answers="roomAnswers"
 			v-else
 		>
 			<Answers
