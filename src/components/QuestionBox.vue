@@ -7,7 +7,7 @@
 					<ButtonComponent
 						classes="flex-1 h-full"
 						:action="onNextRoom"
-						v-if="percentage > 50"
+						v-if="percentage >= 50"
 					>
 						Room suivante
 					</ButtonComponent>
