@@ -21,7 +21,7 @@ export default {
 				classes="w-full h-full"
 				:action="() => $emit('answer', response.id)"
 			>
-				{{ response.text }} - {{response.id}}
+				{{response.id}} - {{ response.text }}
 			</ButtonComponent>
 		</li>
 	</ul>
