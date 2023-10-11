@@ -7,11 +7,8 @@ const useRoomStore = defineStore('room',{
     userAnswers: [],
   }),
   getters: {
-    currentRoom(state) {
-      return data.rooms[state.currentRoomId];
-    },
-    currentSituation(state) {
-      return this.currentRoom.situations[state.currentSituationId];
+    currentRoom() {
+      return (currentRoomId) => data.rooms[currentRoomId];
     }
   },
   actions: {
