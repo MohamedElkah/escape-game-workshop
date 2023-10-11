@@ -2,7 +2,6 @@
 	import {defineProps} from "vue";
 	defineProps({
 		percentage: String,
-		currentRoomId: Number,
 	})
 </script>
 
@@ -12,7 +11,3 @@
 		<span>de bonnes réponses à cette room.</span>
 	</div>
 </template>
-
-<style scoped>
-
-</style>
