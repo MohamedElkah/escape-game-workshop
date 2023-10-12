@@ -1,5 +1,4 @@
 <template>
-
   <div class="room" v-if="currentRoom">
     <div
       class="background"
@@ -25,28 +24,30 @@
     <QuestionBox
       :theme="currentRoom.theme"
       :situation="currentSituation"
-      :responses="responses"
       :has-no-more-situation="hasNoMoreSituation"
-      @answer="handleAnswer"
       @next-room="nextRoom"
-      v-else-if="!showDialog && currentSituation"
-    />
-    <div v-else-if="loadingQuestions">Loading...</div>
+      :room-answers="roomAnswers"
+      :responses="responses"
+      v-else
+    >
+      <Answers :situation="currentSituation" @answer="handleAnswer" />
+    </QuestionBox>
   </div>
-
 </template>
 
 <script>
 import {ref, onMounted, computed} from "vue";
-import {useRoute, useRouter} from "vue-router";
 import DialogBox from "@/components/DialogBox.vue";
 import QuestionBox from "@/components/QuestionBox.vue";
-import useResponseStore from "@/store/responseStore.js";
 import useRoomStore from "@/store/roomStore.js";
+import useResponseStore from "@/store/responseStore.js";
 import jsonData from "@/data/index.json";
+import {useRoute, useRouter} from "vue-router";
+import Answers from "@/components/Answers.vue";
 
 export default {
   components: {
+    Answers,
     DialogBox,
     QuestionBox,
   },
@@ -64,8 +65,9 @@ export default {
 
     const paramId = route.params.id;
     const showDialog = ref(true);
+
     const currentMessage = ref("Chargement...");
-    const imgFolder = ref("");
+    const imgFolder = ref(jsonData.imagesFolder);
 
     const currentSituationId = ref(0);
     const currentSituation = computed(() => {
@@ -84,12 +86,13 @@ export default {
       );
     });
 
-    const {responses, generateResponses, loading, error} = useResponseStore();
+    const {responses, generateResponses, loadingResponse, errorResponse} =
+      useResponseStore();
 
     onMounted(async () => {
       console.log(currentRoom(paramId).dialog, paramId);
       try {
-        imgFolder.value = jsonData.imagesFolder;
+        // imgFolder.value = jsonData.imagesFolder;
         currentMessage.value = "Bienvenue dans cette room !";
         if (currentSituation.value && currentSituation.value.scenario) {
           await generateResponses(currentSituation.value.scenario);
@@ -103,12 +106,19 @@ export default {
     const handleNext = () => {
       showDialog.value = false;
     };
+
     const handleAnswer = (index) => {
+      console.log(
+        "index de la réponse cliquée",
+        index,
+        currentSituation.value.responses[index - 1]
+      );
       if (!hasNoMoreSituation.value) {
         addAnswer({
           roomId: currentRoomId,
           situationId: currentSituation.value.id,
-          answerId: index,
+          answerId: index - 1,
+          isCorrect: currentSituation.value.responses[index - 1].is_correct,
         });
         console.log(currentRoomId, currentRoom(paramId).situations.length);
 
@@ -118,12 +128,10 @@ export default {
             generateResponses(
               currentRoom.situations[currentSituationId.value].scenario
             );
+          } else {
+            console.log("test goToNextSituation() no more situation");
           }
-        } else {
-          console.log("test goToNextSituation() else");
         }
-      } else {
-        console.log("test goToNextSituation() else");
       }
     };
 
@@ -153,7 +161,6 @@ export default {
       noMoreDialogAction,
     };
   },
-
 };
 </script>
 

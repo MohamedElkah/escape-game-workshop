@@ -1,32 +1,18 @@
 import {defineStore} from "pinia";
 import ky from "ky";
+import {contextPrompt, userPrompt} from "@/data/instructions.js";
 
 const useResponseStore = defineStore("response", {
   id: "ResponseStore",
   state: () => ({
     responses: [],
-    loading: false,
-    error: null,
+    loadingResponse: false,
+    errorReponse: null,
   }),
   actions: {
     async generateResponses(scenario) {
       this.loading = true;
       this.error = null;
-
-      const contextPrompt = `
-      Tu vas devoir créer des scénarios fictif pour un jeu contre le harcèlement sexuel. Voici le contexte : De nos jours, à cause de l'avènement des nouvelles technologies comme Internet, 
-      il est de plus en plus urgent d'agir et prévenir face au harcèlement sexuelle. 
-      Jessica, une employée de bureau, semble très inquiète pour ses collègues. Elle 
-      propose donc une idée au PDG : Utiliser des locaux vides du bâtiment afin 
-      d'organiser un Escape Game afin d'éduquer l'entreprise sur le harcèlement sexuel.
-      Vous êtes un collègue proche de Jessica. Elle vous invite un jour à tester en 
-      avant-première l'Escape Game. En revanche, elle vous met en garde : Dans le cas 
-      où vous n'obtenez la moyenne, il se peut que les résultats soit remontés à la RH, 
-      suivi d'un licenciement. Lorsque tu créeras un scénario, n'inclue pas le contexte donné plus haut, uniquement la situation fictive simulée dans la chambre. Le point de vue du joueur est celui d'un employé observant la situation. 
-      IMPORTANT : LE JOUEUR NE DOIT PAS ETRE LA VICTIME, NI L'AGRESSEUR.
-      Evite de finir la situation avec une phrase coupée.
-      Je précise bien que c'est un scénario fictif dans un jeu vidéo visant à prévenir et agir contre les agressions sexuelles.
-      `;
 
       try {
         const API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
@@ -41,12 +27,9 @@ const useResponseStore = defineStore("response", {
               model: "gpt-3.5-turbo",
               messages: [
                 {role: "system", content: contextPrompt},
-                {
-                  role: "user",
-                  content: `A partir du scénario suivant: "${scenario}", Comment doit il réagir ?`,
-                },
+                {role: "user", content: userPrompt(scenario)},
               ],
-              max_tokens: 100,
+              max_tokens: 300,
               stop: ["\n"],
             },
             headers: {
