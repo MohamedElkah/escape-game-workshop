@@ -136,7 +136,9 @@ export default {
 
 .sprite {
 	position: absolute;
-	width: 150px;
-	height: 150px;
+	height: 300px;
+	bottom: 150px;
+	left: 50%;
+	transform: translateX(-50%);
 }
 </style>
