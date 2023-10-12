@@ -1,5 +1,5 @@
 {
-	"imagesFolder": "/src/assets",
+	"imagesFolder": "/assets",
 	"rooms": [
 		{
 			"dialog": [
@@ -48,7 +48,7 @@
 				},
 				{
 					"id": 2,
-					"background": "./assets/",
+					"background": "/backgrounds/reunion.jpeg",
 					"sprite": "/sprites/Neutre.png",
 					"scenario": "John witnesses an intern being belittled by a senior staff member. What should he do?",
 					"responses": [
@@ -76,7 +76,7 @@
 				},
 				{
 					"id": 3,
-					"background": "./assets/",
+					"background": "/backgrounds/immeuble.jpeg",
 					"sprite": "/sprites/Neutre.png",
 					"scenario": "I am Iron Man.",
 					"responses": [
@@ -123,7 +123,7 @@
 			"situations": [
 				{
 					"id": 1,
-					"background": "./assets/",
+					"background": "/backgrounds/bureau.jpg",
 					"sprite": "/sprites/Neutre.png",
 					"scenario": "Bob sees a group of colleagues isolating and ignoring a new team member during lunch breaks. Why should he intervene?",
 					"responses": [
@@ -151,7 +151,7 @@
 				},
 				{
 					"id": 2,
-					"background": "./assets/",
+					"background": "/backgrounds/openspace.png",
 					"sprite": "/sprites/Neutre.png",
 					"scenario": "Emily witnesses a colleague being persistently interrupted and spoken over during meetings. What should she do?",
 					"responses": [

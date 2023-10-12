@@ -14,7 +14,7 @@
         </p>
         <ButtonComponent :action="goToRoom"> Commencer </ButtonComponent>
       </div>
-      <img src="@/assets/sprites/wink.png" class="h-[300px]" alt="home sprite">
+      <img src="../../assets/sprites/wink.png" class="h-[300px]" alt="home sprite">
     </div>
   </div>
 </template>
