@@ -9,6 +9,9 @@ const useRoomStore = defineStore('room',{
   getters: {
     currentRoom() {
       return (currentRoomId) => data.rooms[currentRoomId];
+    },
+    roomsCount() {
+        return data.rooms.length;
     }
   },
   actions: {

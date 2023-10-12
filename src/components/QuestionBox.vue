@@ -9,14 +9,24 @@
 				<div class="flex items-center gap-3">
 					<ButtonComponent
 						classes="flex-1 h-full"
-						:action="onNextRoom"
-						v-if="percentage >= 50"
+						v-if="currentRoomId + 1 >= roomsCount"
+						:action="onEnd"
 					>
-						Room suivante
+						Terminer l'exercice
 					</ButtonComponent>
-					<ButtonComponent classes="flex-1 h-full" v-else>
-						Recommencer
-					</ButtonComponent>
+
+					<template v-else>
+						<ButtonComponent
+							classes="flex-1 h-full"
+							:action="onNextRoom"
+							v-if="percentage >= 50"
+						>
+							Room suivante
+						</ButtonComponent>
+						<ButtonComponent classes="flex-1 h-full" v-else>
+							Recommencer
+						</ButtonComponent>
+					</template>
 
 					<ButtonComponent
 						classes="flex-1 h-full"
@@ -48,6 +58,7 @@ import ButtonComponent from "./Button.vue";
 import useRoomStore from "@/store/roomStore.js";
 import Answers from "@/components/Answers.vue";
 import ResultDisplay from "@/components/ResultDisplay.vue";
+import {useRouter} from "vue-router";
 
 export default {
 	components: {ResultDisplay, Answers, Box, ButtonComponent},
@@ -59,8 +70,9 @@ export default {
 		roomAnswers: Array
 	},
 	setup(props) {
-		const {currentRoomId, keysCount} = useRoomStore()
+		const {currentRoomId, roomsCount} = useRoomStore()
 		const isResultVisible = ref(false);
+		const router = useRouter();
 		const percentage = computed(() => {
 			const result = props.roomAnswers
 				.reduce((acc, answer) => {
@@ -70,11 +82,17 @@ export default {
 			return result.toFixed(2);
 		})
 
+		const onEnd = () => {
+			console.log("end");
+			router.push({name: "Results"})
+		};
+
 		return {
 			isResultVisible,
 			percentage,
 			currentRoomId,
-			keysCount
+			roomsCount,
+			onEnd
 		};
 	},
 };
