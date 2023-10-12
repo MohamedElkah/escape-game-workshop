@@ -1,5 +1,5 @@
 {
-	"imagesFolder": "/assets",
+	"imagesFolder": "/src/assets",
 	"rooms": [
 		{
 			"dialog": [
@@ -7,13 +7,55 @@
 					"id": 1,
 					"type": "dialogue",
 					"speaker": "Alice",
-					"message": "Hi, I'm Alice. I'm a software engineer at a tech company in San Francisco."
+					"message": "Bonjour, t'es la nouvelle recrue ? Je te souhaite la bienvenue !"
 				},
 				{
 					"id": 2,
 					"type": "dialogue",
-					"speaker": "Bob",
-					"message": "Hi, I'm Bob. I'm a software engineer at a tech company in San Francisco."
+					"speaker": "Alice",
+					"message": "J'imagine que tu es venu pour mon Escape Game, pas vrai ? Je l'ai monté moi-même, j'en suis plutôt fière."
+				},
+				{
+					"id": 3,
+					"type": "dialogue",
+					"speaker": "Alice",
+					"message": "Cet Escape Game parlera d'un sujet sérieux : Le harcèlement sexuel en entreprise. En jouant à ce jeu, tu apprendras la différence entre une agression, un harcèlement ou de la drague."
+				},
+				{
+					"id": 4,
+					"type": "dialogue",
+					"speaker": "Alice",
+					"message": "Tu apprendras aussi les conséquences d'un incident, et les actions à prendre si tu assistes à ce genre de situation."
+				},
+				{
+					"id": 5,
+					"type": "dialogue",
+					"speaker": "Alice",
+					"message": "Pour gagner, c'est très simple : Lorsque tu entreras dans une chambre, tu seras confronter à une situation fictive, généré par intelligence artificielle. Réponds avec la bonne action à faire afin de pouvoir continuer !"
+				},
+				{
+					"id": 6,
+					"type": "dialogue",
+					"speaker": "Alice",
+					"message": "Attention, si ton score est vraiment mauvais, je serais obligée d'en parler à la RH et de te virer..."
+				},
+				{
+					"id": 7,
+					"type": "dialogue",
+					"speaker": "Alice",
+					"message": "... ..."
+				},
+				{
+					"id": 8,
+					"type": "dialogue",
+					"speaker": "Alice",
+					"message": "Roh allez, je rigole ! Juste réfléchis bien à tes réponses et tout se passera bien ! Allez, c'est parti !"
+				},
+				{
+					"id": 9,
+					"type": "dialogue",
+					"speaker": "Alice",
+					"message": ""
 				}
 			],
 			"theme": "Harassment Identification",
@@ -21,7 +63,8 @@
 				{
 					"id": 1,
 					"background": "/backgrounds/test.png",
-					"sprite": "/sprites/Neutre.png",
+					"sprite": "/sprites/alice.jpg",
+					"type": "question",
 					"scenario": "Alice overhears a colleague making an inappropriate comment about another team member's appearance. What should she do?",
 					"responses": [
 						{
@@ -48,37 +91,10 @@
 				},
 				{
 					"id": 2,
-					"background": "/backgrounds/reunion.jpeg",
-					"sprite": "/sprites/Neutre.png",
+					"background": "./assets/",
+					"sprite": "./assets/",
+					"type": "question",
 					"scenario": "John witnesses an intern being belittled by a senior staff member. What should he do?",
-					"responses": [
-						{
-							"id": 1,
-							"is_correct": true,
-							"text": "Intervene if safe, and report the incident to HR or a manager immediately."
-						},
-						{
-							"id": 2,
-							"is_correct": false,
-							"text": "Stay out of it since he is not directly involved."
-						},
-						{
-							"id": 3,
-							"is_correct": false,
-							"text": "Confront the senior staff member aggressively."
-						},
-						{
-							"id": 4,
-							"is_correct": false,
-							"text": "Gossip about the situation with other colleagues."
-						}
-					]
-				},
-				{
-					"id": 3,
-					"background": "/backgrounds/immeuble.jpeg",
-					"sprite": "/sprites/Neutre.png",
-					"scenario": "I am Iron Man.",
 					"responses": [
 						{
 							"id": 1,
@@ -105,45 +121,28 @@
 			]
 		},
 		{
-			"dialog": [
-				{
-					"id": 1,
-					"type": "dialogue",
-					"speaker": "Alice",
-					"message": "Hi, I'm Alice. I'm a software engineer at a tech company in San Francisco."
-				},
-				{
-					"id": 2,
-					"type": "dialogue",
-					"speaker": "Bob",
-					"message": "Hi, I'm Bob. I'm a software engineer at a tech company in San Francisco."
-				}
-			],
+			"background": "./assets/",
+			"sprite": "./assets/",
+			"type": "question",
 			"theme": "Bystander Intervention",
 			"situations": [
 				{
 					"id": 1,
-					"background": "/backgrounds/bureau.jpg",
-					"sprite": "/sprites/Neutre.png",
 					"scenario": "Bob sees a group of colleagues isolating and ignoring a new team member during lunch breaks. Why should he intervene?",
 					"responses": [
 						{
-							"id": 1,
 							"is_correct": true,
 							"text": "Creating an inclusive environment is everyone’s responsibility and intervening can help prevent potential harassment or bullying."
 						},
 						{
-							"id": 2,
 							"is_correct": false,
 							"text": "It’s none of his business."
 						},
 						{
-							"id": 3,
 							"is_correct": false,
 							"text": "The new team member probably prefers to be alone."
 						},
 						{
-							"id": 4,
 							"is_correct": false,
 							"text": "He should join in isolating the new member to fit in with the group."
 						}
@@ -151,27 +150,22 @@
 				},
 				{
 					"id": 2,
-					"background": "/backgrounds/openspace.png",
-					"sprite": "/sprites/Neutre.png",
+					"type": "question",
 					"scenario": "Emily witnesses a colleague being persistently interrupted and spoken over during meetings. What should she do?",
 					"responses": [
 						{
-							"id": 1,
 							"is_correct": true,
 							"text": "Support the colleague by acknowledging their points, and address the issue with the interrupters, either in the moment or privately afterwards."
 						},
 						{
-							"id": 2,
 							"is_correct": false,
 							"text": "Stay silent and avoid getting involved."
 						},
 						{
-							"id": 3,
 							"is_correct": false,
 							"text": "Start interrupting others as well to fit in."
 						},
 						{
-							"id": 4,
 							"is_correct": false,
 							"text": "Tell the interrupted colleague they should just speak up more."
 						}
