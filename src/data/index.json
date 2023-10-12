@@ -21,8 +21,7 @@
 				{
 					"id": 1,
 					"background": "/backgrounds/test.png",
-					"sprite": "/sprites/alice.jpg",
-					"type": "question",
+					"sprite": "/sprites/Neutre.png",
 					"scenario": "Alice overhears a colleague making an inappropriate comment about another team member's appearance. What should she do?",
 					"responses": [
 						{
@@ -50,9 +49,36 @@
 				{
 					"id": 2,
 					"background": "./assets/",
-					"sprite": "./assets/",
-					"type": "question",
+					"sprite": "/sprites/Neutre.png",
 					"scenario": "John witnesses an intern being belittled by a senior staff member. What should he do?",
+					"responses": [
+						{
+							"id": 1,
+							"is_correct": true,
+							"text": "Intervene if safe, and report the incident to HR or a manager immediately."
+						},
+						{
+							"id": 2,
+							"is_correct": false,
+							"text": "Stay out of it since he is not directly involved."
+						},
+						{
+							"id": 3,
+							"is_correct": false,
+							"text": "Confront the senior staff member aggressively."
+						},
+						{
+							"id": 4,
+							"is_correct": false,
+							"text": "Gossip about the situation with other colleagues."
+						}
+					]
+				},
+				{
+					"id": 3,
+					"background": "./assets/",
+					"sprite": "/sprites/Neutre.png",
+					"scenario": "I am Iron Man.",
 					"responses": [
 						{
 							"id": 1,
@@ -79,28 +105,45 @@
 			]
 		},
 		{
-			"background": "./assets/",
-			"sprite": "./assets/",
-			"type": "question",
+			"dialog": [
+				{
+					"id": 1,
+					"type": "dialogue",
+					"speaker": "Alice",
+					"message": "Hi, I'm Alice. I'm a software engineer at a tech company in San Francisco."
+				},
+				{
+					"id": 2,
+					"type": "dialogue",
+					"speaker": "Bob",
+					"message": "Hi, I'm Bob. I'm a software engineer at a tech company in San Francisco."
+				}
+			],
 			"theme": "Bystander Intervention",
 			"situations": [
 				{
 					"id": 1,
+					"background": "./assets/",
+					"sprite": "/sprites/Neutre.png",
 					"scenario": "Bob sees a group of colleagues isolating and ignoring a new team member during lunch breaks. Why should he intervene?",
 					"responses": [
 						{
+							"id": 1,
 							"is_correct": true,
 							"text": "Creating an inclusive environment is everyone’s responsibility and intervening can help prevent potential harassment or bullying."
 						},
 						{
+							"id": 2,
 							"is_correct": false,
 							"text": "It’s none of his business."
 						},
 						{
+							"id": 3,
 							"is_correct": false,
 							"text": "The new team member probably prefers to be alone."
 						},
 						{
+							"id": 4,
 							"is_correct": false,
 							"text": "He should join in isolating the new member to fit in with the group."
 						}
@@ -108,22 +151,27 @@
 				},
 				{
 					"id": 2,
-					"type": "question",
+					"background": "./assets/",
+					"sprite": "/sprites/Neutre.png",
 					"scenario": "Emily witnesses a colleague being persistently interrupted and spoken over during meetings. What should she do?",
 					"responses": [
 						{
+							"id": 1,
 							"is_correct": true,
 							"text": "Support the colleague by acknowledging their points, and address the issue with the interrupters, either in the moment or privately afterwards."
 						},
 						{
+							"id": 2,
 							"is_correct": false,
 							"text": "Stay silent and avoid getting involved."
 						},
 						{
+							"id": 3,
 							"is_correct": false,
 							"text": "Start interrupting others as well to fit in."
 						},
 						{
+							"id": 4,
 							"is_correct": false,
 							"text": "Tell the interrupted colleague they should just speak up more."
 						}
