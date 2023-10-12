@@ -9,6 +9,7 @@
 				:src="currentSituation ? imgFolder + currentSituation.sprite : ''"
 				alt="sprite"
 				class="sprite"
+				v-if="showDialog"
 			/>
 		</div>
 		<DialogBox
